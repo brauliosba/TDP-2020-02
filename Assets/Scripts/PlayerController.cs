@@ -33,7 +33,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.W))
+        if (Input.GetKeyDown(KeyCode.W) && currentPoint != Waypoints.Count - 1)
         {
             disabelPanels();
             speed = 7.5f;
@@ -55,7 +55,7 @@ public class PlayerController : MonoBehaviour
         {
             transform.position = Vector3.MoveTowards(transform.position, Waypoints[nextPoint].position, speed * Time.deltaTime);
         }
-        if (Input.GetKeyDown(KeyCode.S))
+        if (Input.GetKeyDown(KeyCode.S) && currentPoint != 0)
         {
             disabelPanels();
             speed = 7.5f;
