@@ -4323,8 +4323,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 444ea8529b4b69d469d471c7d798b31b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  horizontalSpeed: 1
-  verticalSpeed: 1
+  horizontalSpeed: 0.5
+  verticalSpeed: 0.5
   cam: {fileID: 963194227}
   pausePanel: {fileID: 1887133418}
 --- !u!4 &1392429368
