@@ -3,22 +3,7 @@ guid: c617c0903bced654091b5d076a7c5538
 ModelImporter:
   serializedVersion: 19300
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Pared
-    second: {fileID: 2100000, guid: 1eeec1bc8037ab64c84e11b5d5cc7b5c, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Piso
-    second: {fileID: 2100000, guid: 09a3d8c50d4feae4b8e33936a72a1a1b, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: rastMat
-    second: {fileID: 2100000, guid: 09a3d8c50d4feae4b8e33936a72a1a1b, type: 2}
+  externalObjects: {}
   materials:
     materialImportMode: 1
     materialName: 0
