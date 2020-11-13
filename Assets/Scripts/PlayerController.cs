@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public float speed;
+    [HideInInspector] public float originalSpeed;
     public List<Transform> Waypoints;
     private int previousPoint;
     private int currentPoint;
@@ -22,6 +23,7 @@ public class PlayerController : MonoBehaviour
         previousPoint = 0;
         currentPoint = 0;
         nextPoint = 1;
+        originalSpeed = speed;
     }
 
     public void disabelPanels()
@@ -42,6 +44,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.W) && currentPoint != Waypoints.Count - 1)
         {
             disabelPanels();
+            speed = originalSpeed;
             if (transform.position != Waypoints[currentPoint].position)
             {
                 if (nextPoint < currentPoint)
