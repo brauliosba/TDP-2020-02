@@ -130,6 +130,7 @@ public class PanelManager : MonoBehaviour
         previousResponse = response;
         questionPanel.SetActive(false);
         player.GetComponent<PlayerController>().speed = player.GetComponent<PlayerController>().originalSpeed;
+        player.GetComponent<PlayerController>().started = true;
     }
     public void QuitGame()
     {

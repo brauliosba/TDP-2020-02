@@ -6,6 +6,7 @@ public class PlayerController : MonoBehaviour
 {
     public float speed;
     [HideInInspector] public float originalSpeed;
+    [HideInInspector] public bool started = false;
     public List<Transform> Waypoints;
     private int previousPoint;
     private int currentPoint;
@@ -41,81 +42,85 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.W) && currentPoint != Waypoints.Count - 1)
+        if (started)
         {
-            disabelPanels();
-            speed = originalSpeed;
-            if (transform.position != Waypoints[currentPoint].position)
+            if (Input.GetKeyDown(KeyCode.W) && currentPoint != Waypoints.Count - 1)
             {
-                if (nextPoint < currentPoint)
+                disabelPanels();
+                speed = originalSpeed;
+                if (transform.position != Waypoints[currentPoint].position)
                 {
-                    nextPoint = currentPoint;
-                    currentPoint -= 1;
+                    if (nextPoint < currentPoint)
+                    {
+                        nextPoint = currentPoint;
+                        currentPoint -= 1;
+                    }
+                    else if (nextPoint == currentPoint)
+                    {
+                        nextPoint = currentPoint + 1;
+                    }
                 }
-                else if (nextPoint == currentPoint)
-                {
-                    nextPoint = currentPoint + 1;
-                }
+                transform.position = Vector3.MoveTowards(transform.position, Waypoints[nextPoint].position, speed * Time.deltaTime);
             }
-            transform.position = Vector3.MoveTowards(transform.position, Waypoints[nextPoint].position, speed * Time.deltaTime);
-        }
-        if (Input.GetKey(KeyCode.W) && currentPoint != Waypoints.Count - 1)
-        {
-            if (transform.position != Waypoints[currentPoint].position)
+            if (Input.GetKey(KeyCode.W) && currentPoint != Waypoints.Count - 1)
             {
-                if (nextPoint < currentPoint)
+                if (transform.position != Waypoints[currentPoint].position)
                 {
-                    nextPoint = currentPoint;
-                    currentPoint -= 1;
+                    if (nextPoint < currentPoint)
+                    {
+                        nextPoint = currentPoint;
+                        currentPoint -= 1;
+                    }
+                    else if (nextPoint == currentPoint)
+                    {
+                        nextPoint = currentPoint + 1;
+                    }
                 }
-                else if (nextPoint == currentPoint)
-                {
-                    nextPoint = currentPoint + 1;
-                }
+                transform.position = Vector3.MoveTowards(transform.position, Waypoints[nextPoint].position, speed * Time.deltaTime);
             }
-            transform.position = Vector3.MoveTowards(transform.position, Waypoints[nextPoint].position, speed * Time.deltaTime);
-        }
-        if (Input.GetKeyDown(KeyCode.S) && currentPoint != 0)
-        {
-            disabelPanels();
-            if (transform.position != Waypoints[currentPoint].position)
+            if (Input.GetKeyDown(KeyCode.S) && currentPoint != 0)
             {
-                if (nextPoint >= currentPoint)
+                disabelPanels();
+                if (transform.position != Waypoints[currentPoint].position)
                 {
-                    nextPoint = currentPoint;
+                    if (nextPoint >= currentPoint)
+                    {
+                        nextPoint = currentPoint;
+                    }
+                    else
+                    {
+                        nextPoint = previousPoint;
+                    }
                 }
                 else
                 {
                     nextPoint = previousPoint;
                 }
+                transform.position = Vector3.MoveTowards(transform.position, Waypoints[nextPoint].position, speed * Time.deltaTime);
             }
-            else
+            if (Input.GetKey(KeyCode.S) && currentPoint != 0)
             {
-                nextPoint = previousPoint;
-            }
-            transform.position = Vector3.MoveTowards(transform.position, Waypoints[nextPoint].position, speed * Time.deltaTime);
-        }
-        if (Input.GetKey(KeyCode.S) && currentPoint != 0)
-        {
-            if (transform.position != Waypoints[currentPoint].position)
-            {
-                if (nextPoint >= currentPoint)
+                if (transform.position != Waypoints[currentPoint].position)
                 {
-                    nextPoint = currentPoint;
+                    if (nextPoint >= currentPoint)
+                    {
+                        nextPoint = currentPoint;
+                    }
+                    else
+                    {
+                        nextPoint = previousPoint;
+                    }
                 }
                 else
                 {
                     nextPoint = previousPoint;
                 }
+                transform.position = Vector3.MoveTowards(transform.position, Waypoints[nextPoint].position, speed * Time.deltaTime);
             }
-            else
+            if (Input.GetKey(KeyCode.Escape))
             {
-                nextPoint = previousPoint;
+                pausePanel.SetActive(true);
             }
-            transform.position = Vector3.MoveTowards(transform.position, Waypoints[nextPoint].position, speed * Time.deltaTime);
-        }
-        if (Input.GetKey(KeyCode.Escape)){
-            pausePanel.SetActive(true);
         }
     }
 
